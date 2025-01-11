@@ -25,14 +25,20 @@ module SpreadshopGraphClient
         }
       GRAPHQL
 
+      # def self.call(shopId:, platform:, locale:)
+      #   response = Client.query(
+      #     QueryDocument,
+      #     variables: { shopId: shopId, platform: platform, locale: locale }
+      #   )
+      #   raise "GraphQL Errors: #{response.errors.inspect}" if response.errors.any?
+      #   response.data.products
+      # end
       def self.call(shopId:, platform:, locale:)
-        response = Client.query(
-          QueryDocument,
-          variables: { shopId: shopId, platform: platform, locale: locale }
-        )
-        raise "GraphQL Errors: #{response.errors.inspect}" if response.errors.any?
-        response.data.products
+        document = Client.parse(QUERY)
+        response = Client.query(document, variables: { shopId: shopId, platform: platform, locale: locale})
+        response.products
       end
+    
     end
   end
 end

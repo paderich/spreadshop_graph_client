@@ -1,0 +1,4 @@
+example_id                                 | status | run_time        |
+------------------------------------------ | ------ | --------------- |
+./spec/queries/shop_query_spec.rb[1:1:1:1] | passed | 0.01581 seconds |
+./spec/queries/shop_query_spec.rb[1:1:2:1] | passed | 0.00417 seconds |

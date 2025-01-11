@@ -26,9 +26,14 @@ module SpreadshopGraphClient
       end
     end
 
-    # Lazy loading of the schema
+    # Load schema from local file in test environment, else fetch from HTTP
     def self.schema
-      @schema ||= GraphQL::Client.load_schema(http)
+      @schema ||= if ENV['RACK_ENV'] == 'test'
+                   schema_path = File.join(__dir__, 'schema.json')
+                   GraphQL::Client.load_schema(schema_path)
+                 else
+                   GraphQL::Client.load_schema(http)
+                 end
     end
 
     # Lazy creation of the GraphQL client
@@ -43,7 +48,11 @@ module SpreadshopGraphClient
 
     # Query method using the lazy GraphQL client
     def self.query(document, variables: {})
-      graphql_client.query(document, variables: variables)
+      response = graphql_client.query(document, variables: variables)
+      if response.errors.any?
+        raise "GraphQL Errors: #{response.errors.full_messages.join(', ')}"
+      end
+      response.data
     end
   end
 end

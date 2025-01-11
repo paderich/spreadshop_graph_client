@@ -2,8 +2,8 @@ require_relative "../client"
 
 module SpreadshopGraphClient
   module Queries
-    module ShopQuery
-      QueryDocument = Client.parse <<~GRAPHQL
+    class ShopQuery    
+      QUERY = <<~GRAPHQL
         query($name: String!, $platform: Platform!, $locale: Locale!) {
           shop(name: $name, platform: $platform, locale: $locale) {
             id
@@ -12,13 +12,21 @@ module SpreadshopGraphClient
         }
       GRAPHQL
 
+      DOCUMENT = SpreadshopGraphClient::Client.parse(QUERY)
+
       def self.call(name:, platform:, locale:)
-        response = Client.query(
-          QueryDocument,
-          variables: { name: name, platform: platform, locale: locale }
-        )
-        raise "GraphQL Errors: #{response.errors.inspect}" if response.errors.any?
-        response.data.shop
+        response = Client.query(DOCUMENT, variables: { name: name, platform: platform, locale: locale })
+        response.shop
+      end
+
+      # Define the Shop class to encapsulate shop data
+      class Shop
+        attr_accessor :id, :name
+
+        def initialize(id:, name:)
+          @id = id
+          @name = name
+        end
       end
     end
   end

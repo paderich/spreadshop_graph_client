@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.spreadshop.com/v1/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query SpreadshopGraphClient__Queries__ShopQuery__DOCUMENT($name:
+        String!, $platform: Platform!, $locale: Locale!) {\n  shop(name: $name, platform:
+        $platform, locale: $locale) {\n    id\n    name\n  }\n}","variables":{"name":"code-quest","platform":"EU","locale":"de_DE"},"operationName":"SpreadshopGraphClient__Queries__ShopQuery__DOCUMENT"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - My Client
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '54'
+      Content-Type:
+      - application/json
+      X-Served-By:
+      - cache-fra-eddf8230147-FRA
+      Date:
+      - Sat, 11 Jan 2025 14:23:18 GMT
+    body:
+      encoding: UTF-8
+      string: '{"data":{"shop":{"id":"1394271","name":"code-quest"}}}'
+  recorded_at: Sat, 11 Jan 2025 14:23:18 GMT
+recorded_with: VCR 6.3.1
