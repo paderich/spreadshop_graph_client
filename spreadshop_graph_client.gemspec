@@ -11,9 +11,15 @@ Gem::Specification.new do |s|
   s.email       = "-"
   s.files       = Dir["lib/**/*"]
   s.homepage    =
-    "-"
+    "https://ruby-gems.org"
   s.license       = "MIT"
 
 
   s.add_dependency "graphql-client", "~> 0.17"
+
+  s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "webmock", "~> 3.0"
+  s.add_development_dependency "vcr", "~> 6.0"
+  s.add_development_dependency "dotenv"
+  s.add_development_dependency 'rake', '~> 13.0'
 end

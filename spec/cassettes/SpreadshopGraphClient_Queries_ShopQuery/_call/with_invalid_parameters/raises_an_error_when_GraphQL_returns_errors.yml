@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.spreadshop.com/v1/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query SpreadshopGraphClient__Queries__ShopQuery__DOCUMENT($name:
+        String!, $platform: Platform!, $locale: Locale!) {\n  shop(name: $name, platform:
+        $platform, locale: $locale) {\n    id\n    name\n  }\n}","variables":{"name":"","platform":"INVALID","locale":"invalid_locale"},"operationName":"SpreadshopGraphClient__Queries__ShopQuery__DOCUMENT"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - My Client
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '342'
+      Content-Type:
+      - application/json
+      X-Served-By:
+      - cache-fra-eddf8230060-FRA
+      Date:
+      - Sat, 11 Jan 2025 14:23:18 GMT
+    body:
+      encoding: UTF-8
+      string: '{"errors":[{"message":"Variable \"$platform\" got invalid value \"INVALID\";
+        Value \"INVALID\" does not exist in \"Platform\" enum.","locations":[{"line":1,"column":75}]},{"message":"Variable
+        \"$locale\" got invalid value \"invalid_locale\"; Value \"invalid_locale\"
+        does not exist in \"Locale\" enum.","locations":[{"line":1,"column":97}]}]}'
+  recorded_at: Sat, 11 Jan 2025 14:23:19 GMT
+recorded_with: VCR 6.3.1
