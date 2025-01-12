@@ -19,7 +19,6 @@ module SpreadshopGraphClient
         response.shop
       end
 
-      # Define the Shop class to encapsulate shop data
       class Shop
         attr_accessor :id, :name
 
