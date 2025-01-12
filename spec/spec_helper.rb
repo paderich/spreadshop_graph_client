@@ -16,7 +16,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!              # Integrate with RSpec metadata
   config.default_cassette_options = { record: :once } # Record interactions once and replay
   config.allow_http_connections_when_no_cassette = false # Disallow real HTTP requests outside cassettes
-  config.debug_logger = File.open("log/vcr_debug.log", "w")
+  config.debug_logger = File.open("spec/log/vcr_debug.log", "w")
 end
 
 RSpec.configure do |config|
